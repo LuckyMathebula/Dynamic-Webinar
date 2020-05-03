@@ -43,11 +43,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -89,11 +99,89 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap4.min.css" />
+    <Content Include="Content\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery-3.3.1.js" />
+    <Content Include="Content\jquery.dataTables.js" />
+    <Content Include="Database\Appdata.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Appdata.edmx</DependentUpon>
+      <LastGenOutput>Appdata.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\Appdata.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Appdata.edmx</DependentUpon>
+      <LastGenOutput>Appdata.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
+    <Content Include="WebinarStyle\css\animate.css" />
+    <Content Include="WebinarStyle\css\bootstrap.min.css" />
+    <Content Include="WebinarStyle\css\owl.carousel.css" />
+    <Content Include="WebinarStyle\css\owl.theme.default.css" />
+    <Content Include="WebinarStyle\css\preloader.css" />
+    <Content Include="WebinarStyle\css\responsive.css" />
+    <Content Include="WebinarStyle\css\style.css" />
+    <Content Include="WebinarStyle\fonts\et-line.svg" />
+    <Content Include="WebinarStyle\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="WebinarStyle\images\1.png" />
+    <Content Include="WebinarStyle\images\bg.jpg" />
+    <Content Include="WebinarStyle\images\cori.jpg" />
+    <Content Include="WebinarStyle\images\corona.jpg" />
+    <Content Include="WebinarStyle\images\dell.jpg" />
+    <Content Include="WebinarStyle\images\gg.jpg" />
+    <Content Include="WebinarStyle\images\header_bg.jpg" />
+    <Content Include="WebinarStyle\images\imac.png" />
+    <Content Include="WebinarStyle\images\Logo-1.png" />
+    <Content Include="WebinarStyle\images\logo.png" />
+    <Content Include="WebinarStyle\images\q.png" />
+    <Content Include="WebinarStyle\images\quote.png" />
+    <Content Include="WebinarStyle\images\safri.png" />
+    <Content Include="WebinarStyle\images\Safritech logo.png" />
+    <Content Include="WebinarStyle\images\scroll.png" />
+    <Content Include="WebinarStyle\images\shape.png" />
+    <Content Include="WebinarStyle\images\status.gif" />
+    <Content Include="WebinarStyle\images\testimonial_bg.jpg" />
+    <Content Include="WebinarStyle\images\w1.jpg" />
+    <Content Include="WebinarStyle\images\w2.jpg" />
+    <Content Include="WebinarStyle\images\w3.jpg" />
+    <Content Include="WebinarStyle\images\w4.jpg" />
+    <Content Include="WebinarStyle\images\w5.jpg" />
+    <Content Include="WebinarStyle\images\w6.jpg" />
+    <Content Include="WebinarStyle\images\Webbanner.png" />
+    <Content Include="WebinarStyle\images\webinar.png" />
+    <Content Include="WebinarStyle\js\bootstrap.min.js" />
+    <Content Include="WebinarStyle\js\jquery.min.js" />
+    <Content Include="WebinarStyle\js\jquery.nicescroll.js" />
+    <Content Include="WebinarStyle\js\lte-ie7.js" />
+    <Content Include="WebinarStyle\js\owl.carousel.js" />
+    <Content Include="WebinarStyle\js\script.js" />
+    <Content Include="WebinarStyle\js\wow.js" />
+    <Content Include="WebinarStyle\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Database\Appdata.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Appdata.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Appdata.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Appdata.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Appdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Appdata.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Webinar.cs">
+      <DependentUpon>Appdata.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -102,17 +190,36 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Database\Appdata.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Appdata.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database\Appdata.edmx.diagram">
+      <DependentUpon>Appdata.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\Webinar.cshtml" />
+    <Content Include="Views\Home\success.cshtml" />
+    <Content Include="Views\Home\Attendees.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="WebinarStyle\fonts\et-line.eot" />
+    <Content Include="WebinarStyle\fonts\et-line.ttf" />
+    <Content Include="WebinarStyle\fonts\et-line.woff" />
+    <Content Include="WebinarStyle\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="WebinarStyle\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="WebinarStyle\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="WebinarStyle\images\header_bg.webp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
